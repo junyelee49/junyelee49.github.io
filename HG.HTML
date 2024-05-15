@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桌上型電腦財產編號回報表單</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"],
+        input[type="button"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        input[type="button"] {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>財產編號回報表單</h1>
+        <form action="https://script.google.com/macros/s/AKfycbyBKWt1djoTRXTxHx54OgayQzjqdYoatB4GrHJ_Rw5nx6VjC5xR9X8rpd6PuO9fWbtY/exec" method="post">
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="property_number">財產編號:</label>
+            <input type="text" id="property_number" name="property_number" required pattern="\d{14}">
+
+            <label for="date">日期:</label>
+            <input type="text" id="date" name="date" readonly>
+
+            <input type="submit" value="提交">  
+            <input type="button" value="清除" onclick="clearForm()">
+        </form>
+    </div>
+
+    <script>
+        // 取得當前日期
+        function getCurrentDate() {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+            return yyyy + '-' + mm + '-' + dd;
+        }
+
+        // 將當前日期填入日期欄位
+        document.getElementById('date').value = getCurrentDate();
+
+        // 清除表單
+        function clearForm() {
+            document.getElementById('name').value = '';
+            document.getElementById('property_number').value = '';
+            document.getElementById('date').value = getCurrentDate();
+        }
+    </script>
+</body>
+</html>
