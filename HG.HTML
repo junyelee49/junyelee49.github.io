@@ -58,18 +58,12 @@
 <body>
     <div class="form-container">
         <h1>財產編號回報表單</h1>
-        <form action="https://script.google.com/macros/s/AKfycbyBKWt1djoTRXTxHx54OgayQzjqdYoatB4GrHJ_Rw5nx6VjC5xR9X8rpd6PuO9fWbtY/exec" method="post">
+        <form action="https://script.google.com/macros/s/AKfycbxX3UjrNCQQ9pyCasvGJgKPxByNFfDAm0NF0M70NQi2dW2idYG5fOONwGBM4MQO3v_q/exec" method="post">
             <label for="name">姓名:</label>
             <input type="text" id="name" name="name" required>
 
-            <label for="property_number_part1">財產編號(第一段):</label>
-            <input type="text" id="property_number_part1" name="property_number_part1" required pattern="\d{7}">
-
-            <label for="property_number_part2">財產編號(第二段):</label>
-            <input type="text" id="property_number_part2" name="property_number_part2" required pattern="\d{7}">
-
-            <label for="property_number_part3">財產編號(第三段):</label>
-            <input type="text" id="property_number_part3" name="property_number_part3" required pattern="\d{3}">
+            <label for="property_number">財產編號:</label>
+            <input type="text" id="property_number" name="property_number" required pattern="\d{14}">
 
             <label for="date">日期:</label>
             <input type="text" id="date" name="date" readonly>
@@ -95,9 +89,7 @@
         // 清除表單
         function clearForm() {
             document.getElementById('name').value = '';
-            document.getElementById('property_number_part1').value = '';
-            document.getElementById('property_number_part2').value = '';
-            document.getElementById('property_number_part3').value = '';
+            document.getElementById('property_number').value = '';
             document.getElementById('date').value = getCurrentDate();
         }
     </script>
