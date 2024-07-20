@@ -5,25 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>緊急聯絡人表單</title>
     <style>
-        /* 添加 CSS 样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center; /* 置中对齐标题 */
+            color: #ff0000; /* 红色标题 */
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], input[type="tel"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            margin-top: 10px;
+        }
+
+        .example-text {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>緊急聯絡人表單</h1>
         <form id="contactForm">
-            <!-- 表单字段 -->
-            <label for="list">你的姓名:</label>
+            <label for="list">清單:</label>
             <input type="text" id="list" name="list" placeholder="例如: 張三" required><br>
             
-            <label for="name">緊急連絡人姓名:</label>
-            <input type="text" id="name" name="name" placeholder="例如: 李四" required><br>
-            
-            <label for="relationship">關係:</label>
-            <input type="text" id="relationship" name="relationship" placeholder="例如: 朋友" required><br>
+            <label for="name1">緊急聯絡人1 姓名:</label>
+            <input type="text" id="name1" name="name1" placeholder="例如: 李四" required><br>
             
             <label for="phone1">電話1:</label>
             <input type="tel" id="phone1" name="phone1" pattern="[0-9]{10}" placeholder="例如: 0912345678" required><br>
+            
+            <label for="name2">緊急聯絡人2 姓名:</label>
+            <input type="text" id="name2" name="name2" placeholder="例如: 王五"><br>
             
             <label for="phone2">電話2:</label>
             <input type="tel" id="phone2" name="phone2" pattern="[0-9]{10}" placeholder="例如: 0987654321"><br>
@@ -40,13 +104,13 @@
             event.preventDefault();
             
             var list = document.getElementById('list').value.trim();
-            var name = document.getElementById('name').value.trim();
-            var relationship = document.getElementById('relationship').value.trim();
+            var name1 = document.getElementById('name1').value.trim();
             var phone1 = document.getElementById('phone1').value.trim();
+            var name2 = document.getElementById('name2').value.trim();
             var phone2 = document.getElementById('phone2').value.trim();
             
-            if (!list || !name || !relationship || !phone1) {
-                alert('所有字段都是必填的，除了電話2。');
+            if (!list || !name1 || !phone1) {
+                alert('清單、緊急聯絡人1 姓名 和 電話1 是必填的。');
                 return;
             }
 
@@ -64,9 +128,9 @@
             // 如果所有驗證通過，提交表單數據
             var data = {
                 list: list,
-                name: name,
-                relationship: relationship,
+                name1: name1,
                 phone1: phone1,
+                name2: name2,
                 phone2: phone2
             };
             
