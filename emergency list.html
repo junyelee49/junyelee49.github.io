@@ -65,6 +65,12 @@
         .button-container {
             margin-top: 10px;
         }
+
+        .example-text {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -75,7 +81,7 @@
             <input type="text" id="list" name="list" placeholder="請輸入你的姓名" required><br>
             
             <label for="name1">緊急聯絡人1 姓名:</label>
-            <input type="text" id="name1" name="name1" placeholder="例如: 李2" required><br>
+            <input type="text" id="name1" name="name1" placeholder="例如: 李1" required><br>
             
             <label for="phone1">電話1:</label>
             <input type="tel" id="phone1" name="phone1" pattern="[0-9]{10}" placeholder="例如: 0912345678" required><br>
@@ -130,6 +136,7 @@
             
             fetch('https://script.google.com/macros/s/AKfycbxExfyV8SGf9UXfKvDAlkSBuzgLx7IPGaD28Cj-rPsTjtWkVGRFRUCPBpn2z-sbCmii/exec', {
                 method: 'POST',
+                mode: 'cors',  // 確保 CORS 設置
                 headers: {
                     'Content-Type': 'application/json'
                 },
