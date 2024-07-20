@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>緊急聯絡人表單</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center; /* 置中对齐标题 */
+            color: #ff0000; /* 红色标题 */
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], input[type="tel"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"], input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
+            margin-top: 10px;
+        }
+
+        .example-text {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>緊急聯絡人表單</h1>
+        <form id="contactForm">
+            <label for="list">你的姓名:</label>
+            <input type="text" id="list" name="list" placeholder="例如: 張三" required><br>
+            
+            <label for="name">緊急連絡人姓名:</label>
+            <input type="text" id="name" name="name" placeholder="例如: 李四" required><br>
+            
+            <label for="relationship">關係:</label>
+            <input type="text" id="relationship" name="relationship" placeholder="例如: 朋友" required><br>
+            
+            <label for="phone1">電話1:</label>
+            <input type="tel" id="phone1" name="phone1" pattern="[0-9]{10}" placeholder="例如: 0912345678" required><br>
+            
+            <label for="phone2">電話2:</label>
+            <input type="tel" id="phone2" name="phone2" pattern="[0-9]{10}" placeholder="例如: 0987654321"><br>
+
+            <div class="button-container">
+                <input type="submit" value="提交">
+                <input type="button" value="清除" onclick="clearForm()">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var list = document.getElementById('list').value.trim();
+            var name = document.getElementById('name').value.trim();
+            var relationship = document.getElementById('relationship').value.trim();
+            var phone1 = document.getElementById('phone1').value.trim();
+            var phone2 = document.getElementById('phone2').value.trim();
+            
+            if (!list || !name || !relationship || !phone1) {
+                alert('所有字段都是必填的，除了電話2。');
+                return;
+            }
+
+            var phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone1)) {
+                alert('電話1應為10位數字。');
+                return;
+            }
+            
+            if (phone2 && !phonePattern.test(phone2)) {
+                alert('如果提供電話2，它應為10位數字。');
+                return;
+            }
+            
+            // 如果所有驗證通過，提交表單數據
+            var data = {
+                list: list,
+                name: name,
+                relationship: relationship,
+                phone1: phone1,
+                phone2: phone2
+            };
+            
+            fetch('YOUR_WEB_APP_URL', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('數據已成功提交！');
+                document.getElementById('contactForm').reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        function clearForm() {
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+</html>
