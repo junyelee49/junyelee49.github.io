@@ -141,13 +141,23 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(result => {
-                alert('數據已成功提交！');
-                document.getElementById('contactForm').reset();
+                if (result.status === 'success') {
+                    alert('數據已成功提交！');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('提交失败: ' + result.message);
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
+                alert('提交失败: ' + error.message);
             });
         });
 
