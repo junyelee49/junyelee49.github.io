@@ -25,8 +25,8 @@
         }
 
         h1 {
-            text-align: center; /* 置中对齐标题 */
-            color: #ff0000; /* 红色标题 */
+            text-align: center; /* 置中對齊標題 */
+            color: #ff0000; /* 紅色標題 */
             margin-top: 0;
         }
 
@@ -134,7 +134,7 @@
                 phone2: phone2
             };
             
-            fetch('https://script.google.com/macros/s/AKfycbyCXGwdbfqiNU2sWF1_BSYAOZ8AvAUM65kJOWQ4Z7PmSuXVXyFy0M8hgMZ7akRQNUsP/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbw3I12pMTJhWV-urC0CRdbM2DWr1xw2zP89tdCw531j9Vs46KWJYYfuZTUFXZQvEqW2/exec', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -152,12 +152,12 @@
                     alert('數據已成功提交！');
                     document.getElementById('contactForm').reset();
                 } else {
-                    alert('提交失败: ' + result.message);
+                    alert('提交失敗: ' + result.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('提交失败: ' + error.message);
+                alert('提交失敗: ' + error.message);
             });
         });
 
